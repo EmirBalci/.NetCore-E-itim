@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RpgSolution.Models;
+using RpgSolution.Services.CharacterService;
 
 namespace RpgSolution.Controllers
 {
@@ -12,34 +13,29 @@ namespace RpgSolution.Controllers
     [ApiController]
     public class CharacterController : ControllerBase
     {
-        private static Character knight = new Character();
-        private static List<Character> characters = new List<Character>
-        {
-            new Character(),
-            new Character
-            {
-                Id = 2,
-                Name = "Emir",
-                Class = RpgClass.Cleric
-            }
-        };
+        private readonly ICharacterService _characterService;
 
-        public IActionResult Get()
+        public CharacterController(ICharacterService characterService)
         {
-            return Ok(knight);
+            _characterService = characterService;
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetSingle(int id)
+        {
+            return Ok(_characterService.GetCharacterById(id));
         }
 
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
-            return Ok(characters);
+            return Ok(_characterService.GetAllCharacters());
         }
 
         [HttpPost]
         public IActionResult AddCharacter(Character newCharacter)
         {
-            characters.Add(newCharacter);
-            return Ok(characters);
+            return Ok(_characterService.AddCharacter(newCharacter));
         }
     }
 }
