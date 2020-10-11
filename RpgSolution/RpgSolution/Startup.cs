@@ -19,6 +19,7 @@ using Microsoft.IdentityModel.Tokens;
 using RpgSolution.Data;
 using RpgSolution.Services.CharacterService;
 using RpgSolution.Services.CharacterSkillService;
+using RpgSolution.Services.FightService;
 using RpgSolution.Services.WeaponService;
 
 namespace RpgSolution
@@ -53,6 +54,7 @@ namespace RpgSolution
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IWeaponService, WeaponService>();
             services.AddScoped<ICharacterSkillService, CharacterSkillService>();
+            services.AddScoped<IFightService, FightService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

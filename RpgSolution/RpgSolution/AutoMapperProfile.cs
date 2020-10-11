@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using RpgSolution.Dtos.Character;
+using RpgSolution.Dtos.Fight;
 using RpgSolution.Dtos.Skill;
 using RpgSolution.Dtos.Weapon;
 using RpgSolution.Models;
@@ -19,6 +20,7 @@ namespace RpgSolution
             CreateMap<AddCharacterDto, Character>();
             CreateMap<Weapon, GetWeaponDto>();
             CreateMap<Skill, GetSkillDto>();
+            CreateMap<Character, HighScoreDto>();
         }
     }
 }
